@@ -25,5 +25,6 @@ struct pquant {
 	bool output_tag;
 };
 
-ifstream& operator>>(ifstream& in, vector<pquant> & list);
+ifstream& operator>>(ifstream& in, vector<pquant>& list);
+ostream& operator<<(ostream& os, pquant& item);
 void qtest(vector<pquant>& veclist, valarray<double>& vallist);

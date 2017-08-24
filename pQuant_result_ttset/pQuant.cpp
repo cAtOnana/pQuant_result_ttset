@@ -39,9 +39,17 @@ void qtest(vector<pquant>& veclist, valarray<double>& vallist)
 		}
 		variance = sqrt(variance / vallist.size() - 1);
 		double q = (vallist[i] - aver_out) / variance;
-		if (q >= limit)
+		if (q >= limit||q<= -limit)
 			veclist[i].output_tag = true;
 		else
 			veclist[i].output_tag = false;
 	}
+}
+
+ostream& operator<<(ostream& os, pquant& item)
+{
+	os << item.name_ms2 << '\t' << item.seq << '\t' << item.modi << '\t' << item.score_modi << '\t' << item.intensity << '\t' << item.locus << '\t'
+		<< item.description << '\t' << item.number << '\t' << item.ratio << '\t' << item.score_inten << '\t' << item.similarity1 << '\t' << item.similarity2<< '\t'
+		<< item.inten_s1 << '\t' << item.inten_s2 << '\t' << item.flag;
+	return os;
 }
