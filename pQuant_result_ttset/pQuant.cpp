@@ -18,7 +18,8 @@ ifstream & operator>>(ifstream & in, vector<pquant>& list)
 		in >> temp.inten_s1;
 		in >> temp.inten_s2;
 		in >> temp.flag;
-		list.push_back(temp);
+		if(log10(temp.ratio)>=-3.0)
+			list.push_back(temp);
 	}
 	return in;
 	
@@ -40,6 +41,25 @@ void qtest(vector<pquant>& veclist, valarray<double>& vallist)
 		variance = sqrt(variance / vallist.size() - 1);
 		double q = (vallist[i] - aver_out) / variance;
 		if (q >= limit||q<= -limit)
+			veclist[i].output_tag = true;
+		else
+			veclist[i].output_tag = false;
+	}
+}
+
+void ttest(vector<pquant>& veclist,valarray<double>& vallist)
+{
+	double miu = vallist.sum() / vallist.size();
+	double sigma{ 0.0 };
+	for (auto n : vallist)
+	{
+		sigma += pow(n - miu, 2);
+	}
+	sigma = sqrt(sigma / vallist.size());
+	double min = miu - 1.96*sigma, max = miu + 1.96*sigma;
+	for (int i = 0; i < veclist.size(); i++)
+	{
+		if (veclist[i].ratio <= max&&min <= veclist[i].ratio)
 			veclist[i].output_tag = true;
 		else
 			veclist[i].output_tag = false;

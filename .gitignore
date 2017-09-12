@@ -259,3 +259,13 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/pQuant_result_ttset/LM3_2.spectraflit.list
+/pQuant_result_ttset/LM3_2.spectra.list
+/pQuant_result_ttset/LM3_1.spectraflit.list
+/pQuant_result_ttset/LM3_1.spectra.list
+/pQuant_result_ttset/Hep3B_2.spectraflit.list
+/pQuant_result_ttset/Hep3B_2.spectra.list
+/pQuant_result_ttset/Hep3B_1.spectraflit.list
+/pQuant_result_ttset/Hep3B_1.spectra.list
+/pQuant_result_ttset/97H_2.spectraflit.list
+/pQuant_result_ttset/97H_2.spectra.list

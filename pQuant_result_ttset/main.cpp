@@ -1,7 +1,9 @@
 #include"pQuant.h"
-string inname = "";
-string outname = "";
-string logname = "";
+#include<algorithm>
+string inname = "97H_2.spectra.list";
+string outname = "97H_2.spectraflit.list";
+string logname = "97H_2.log";
+bool sortbybigger(pquant& a, pquant& b) { return a.ratio < b.ratio; }
 int main()
 {
 	ofstream log(logname);
@@ -21,19 +23,25 @@ int main()
 	string title;
 	getline(in, title);
 	in >> veclist;
+	sort( veclist.begin(), veclist.end(),sortbybigger);
 	valarray<double> vallist(0.0,veclist.size());
 	for (int i = 0; i < veclist.size(); i++)
 	{
 		vallist[i] = veclist[i].ratio;
 	}
+	log10(vallist);
 	qtest(veclist, vallist);
-	
 	ofstream out(outname);
+	out << title << endl;
 	for (int i = 0; i < veclist.size(); i++)
 	{
 		if (veclist[i].output_tag)
 			out << veclist[i] << endl;
 		else
-			continue;
+			cout << veclist[i] << endl;
 	}
+	cout << "aaa";
+	char z;
+	cin >> z;
+	return 0;
 }

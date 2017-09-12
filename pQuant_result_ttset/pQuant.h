@@ -22,9 +22,10 @@ struct pquant {
 	double inten_s1;
 	double inten_s2;
 	int flag;
-	bool output_tag;
+	bool output_tag =false;
 };
 
 ifstream& operator>>(ifstream& in, vector<pquant>& list);
 ostream& operator<<(ostream& os, pquant& item);
 void qtest(vector<pquant>& veclist, valarray<double>& vallist);
+void ttest(vector<pquant>& veclist,valarray<double>& vallist);
